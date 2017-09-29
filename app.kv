@@ -1,66 +1,79 @@
-# create your Kivy layout in the kv language here
 BoxLayout:
-
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint_x: 0.3
-        Button:
-            id: required_book_button
-            text: "List Required"
-            on_release: app.press_required_books()
-        Button:
-            id: completed_book_button
-            text: "List Completed"
-            on_release: app.press_completed_books()
-        Label:
-            id: add_book_button
-            text: "Add New Book..."
-        Label:
-            text: "Title:"
-        TextInput:
-            id: text_title
-            value: ''
-            size_hint_y: None
-            height: '48dp'
-            multiline: False
-            write_tab: False
-        Label:
-            text: "Author:"
-        TextInput:
-            id: text_author
-            value: ''
-            size_hint_y: None
-            height: '48dp'
-            multiline: False
-            write_tab: False
-        Label:
-            text: "Pages"
-        TextInput:
-            id: text_pages
-            value: ''
-            size_hint_y: None
-            height: '48dp'
-            multiline: False
-            write_tab: False
-        Button:
-            text: "Add Item"
-            on_release: app.add_books(text_title.text,text_author.text,text_pages.text)
-        Button:
-            text: "Clear"
-            on_release: app.clear_text()
-
-    BoxLayout:
-        orientation: "vertical"
-        Label:
-            id: bookPages
-            size_hint_y: 0.1
-            text: ""
-#            text: app.book_pages
-        BoxLayout:
-            id: entriesBox
-            orientation: 'vertical'
-        Label:
-            id: bookMsg
-            size_hint_y: 0.1
-            text: ""
-#            text: app.book_msg
+	id: mainBox
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			orientation: 'horizontal'
+			BoxLayout:
+				id: action
+				orientation: 'vertical'
+				size_hint_x: 0.2
+				Button:
+					id: require_item
+					text: 'List Required'
+					on_release: app.require_item()
+				Button:
+					id: complete_item
+					text: 'List Completed'
+					on_release: app.complete_item()
+				Label:
+					text: 'Add New Item...'
+					size_hint_y: None
+					height: '48dp'
+				Label:
+					text: 'Name: '
+					size_hint_y: None
+					height: '48dp'
+				TextInput:
+					id: new_item_name
+					value: ''
+					size_hint_y: None
+					height: '48dp'
+					multiline: False
+					write_tab: False
+				Label:
+					text: 'Price: '
+					size_hint_y: None
+					height: '48dp'
+				TextInput:
+					id: new_item_price
+					value: ''
+					size_hint_y: None
+					height: '48dp'
+					multiline: False
+					write_tab: False
+				Label:
+					text: 'Priority: '
+					size_hint_y: None
+					height: '48dp'
+				TextInput:
+					id: new_item_priority
+					value: ''
+					size_hint_y: None
+					height: '48dp'
+					multiline: False
+					write_tab: False
+				Button:
+					text: 'Add Item'
+					on_release: app.add_item(new_item_name.text, new_item_price.text, new_item_priority.text)
+				Button:
+					id: cancel_input
+					text: 'Clear'
+					on_release: app.cancel_input()
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					id: topLabel
+					text: app.top_text
+					size_hint_y: None
+					height: '48dp'
+				BoxLayout:
+					id: item_list
+					orientation: 'vertical'
+					Button:
+						text: 'Add Item'
+						on_release: app.add_item(new_item_name.text, new_item_price.text, new_item_priority.text)
+		Label:
+			id: statusLabel
+			size_hint_y: 0.1
+			text: app.status_text
